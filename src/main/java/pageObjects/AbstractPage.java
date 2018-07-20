@@ -12,8 +12,9 @@ import utilities.VerificationManager;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public abstract class AbstractPage extends VerificationManager {
+public abstract class AbstractPage {
 
+    VerificationManager verificationManager = new VerificationManager();
     SoftAssert softAssert = new SoftAssert();
 
     public AbstractPage() {
@@ -26,7 +27,7 @@ public abstract class AbstractPage extends VerificationManager {
     private MobileElement continueAlertButton;
 
     protected void acceptCertificateAlertIfPresent() {
-        if (isElementVisible(certificateAlert, 5)) {
+        if (verificationManager.isElementVisible(certificateAlert, 5)) {
             continueAlertButton.click();
             log.info("Tapped \"Continue\" button on Certificate Alert");
         }
