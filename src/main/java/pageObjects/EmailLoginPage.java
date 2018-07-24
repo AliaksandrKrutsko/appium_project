@@ -36,7 +36,7 @@ public class EmailLoginPage extends AbstractPage {
 
 
     /**
-     * VerificationManager
+     * Verifications
      */
 
 }

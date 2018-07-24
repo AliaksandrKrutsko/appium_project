@@ -17,7 +17,7 @@ public class SelectorPage extends AbstractPage {
      */
 
     /**
-     * VerificationManager
+     * Verifications
      */
 
     /**

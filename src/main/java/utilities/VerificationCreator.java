@@ -5,7 +5,7 @@ import io.appium.java_client.MobileElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class VerificationManager {
+public class VerificationCreator {
 
     private long timeOutSeconds;
 
