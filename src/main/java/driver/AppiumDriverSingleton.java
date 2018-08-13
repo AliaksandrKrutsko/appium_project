@@ -5,6 +5,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import utilities.AppiumConfiguration;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -14,25 +15,25 @@ import java.util.concurrent.TimeUnit;
 public class AppiumDriverSingleton {
 
     private static AppiumDriver<MobileElement> driver;
-    private static File app = new File(AppiumCapabilities.PATH_NAME.get());
+    private static File app = new File(AppiumConfiguration.getAppPath());
 
     public static AppiumDriver getDriver()  {
         if (driver == null) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-            capabilities.setCapability("deviceName", AppiumCapabilities.DEVICE_NAME.get());
-            capabilities.setCapability("platformVersion", AppiumCapabilities.PLATFORM_VERSION.get());
-            capabilities.setCapability("platformName", AppiumCapabilities.PLATFORM_NAME.get());
-            capabilities.setCapability("automationName", AppiumCapabilities.AUTOMATION_NAME.get());
+            capabilities.setCapability("deviceName", AppiumConfiguration.getDeviceName());
+            capabilities.setCapability("platformVersion", AppiumConfiguration.getPlatformName());
+            capabilities.setCapability("platformName", AppiumConfiguration.getPlatformName());
+            capabilities.setCapability("automationName", AppiumConfiguration.getAutomationName());
             capabilities.setCapability("app", app.getAbsolutePath());
-            capabilities.setCapability("appPackage", AppiumCapabilities.APP_PACKAGE.get());
-            capabilities.setCapability("appWaitActivity", AppiumCapabilities.APP_ACTIVITY.get());
+            capabilities.setCapability("appPackage", AppiumConfiguration.getAppPackage());
+            capabilities.setCapability("appWaitActivity", AppiumConfiguration.getAppActivity());
             try {
-                driver = new AndroidDriver<>(new URL(AppiumCapabilities.URL.get()), capabilities);
+                driver = new AndroidDriver<>(new URL(AppiumConfiguration.getUrl()), capabilities);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            driver.manage().timeouts().implicitlyWait(Long.parseLong(AppiumCapabilities.IMPLICIT_WAIT.get()), TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(AppiumConfiguration.getImplicitWait(), TimeUnit.SECONDS);
         }
         return driver;
     }

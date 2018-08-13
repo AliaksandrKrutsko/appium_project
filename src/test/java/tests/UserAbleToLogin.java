@@ -1,13 +1,16 @@
 package tests;
 
 import driver.TestBase;
-import org.testng.annotations.Parameters;
+import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.EmailLoginPage;
 import pageObjects.PasswordLoginPage;
 import pageObjects.PreLoginPage;
 import pageObjects.SelectorPage;
+import utilities.TestListener;
 
+@Listeners({TestListener.class})
 public class UserAbleToLogin extends TestBase {
 
     PreLoginPage preLoginPage = new PreLoginPage();
@@ -19,14 +22,14 @@ public class UserAbleToLogin extends TestBase {
     }
 
     @Test
-    @Parameters({"username", "password"})
-    public void test(String username, String password) {
+    @Description("User is able to login to Circuit")
+    public void test_user1AbleToLogin() {
 
         preLoginPage
                 .assert_imgLogoIsDisplayed()
                 .tap_signInButton();
         loginPage
-                .enterEmail(username)
+                .enterEmail(user1 + serverAdress)
                 .tapEmailSignInButton();
         passwordPage
                 .enter_password(password)
@@ -34,5 +37,21 @@ public class UserAbleToLogin extends TestBase {
         selectorPage.assertConversationSelectorSpinnerVisible();
 
     }
+
+//    @Test
+//    public void test_user2AbleToLogin() {
+//
+//        preLoginPage
+//                .assert_imgLogoIsDisplayed()
+//                .tap_signInButton();
+//        loginPage
+//                .enterEmail(user2 + serverAdress)
+//                .tapEmailSignInButton();
+//        passwordPage
+//                .enter_password(password)
+//                .tap_passwordSignInButton();
+//        selectorPage.assertConversationSelectorSpinnerVisible();
+//
+//    }
 
 }
