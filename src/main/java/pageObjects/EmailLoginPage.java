@@ -11,7 +11,7 @@ public class EmailLoginPage extends AbstractPage {
         super();
     }
 
-    @AndroidFindBy(id = "edtMaterialEditTextContent")
+    @AndroidFindBy(id = "edtTextContent")
     private MobileElement emailInputField;
     @AndroidFindBy(id = "btnSignIn")
     private MobileElement emailSignInButton;
